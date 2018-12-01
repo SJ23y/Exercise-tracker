@@ -31,21 +31,24 @@
     </header>
 
     <main>
-      <form method="POST" action="/api/exercise/add">
-        <title>Create a New User</title>
-        <input placeholder="username" type="text" name="username" id="new_user" />
-        <button type="submit">Submit</button>
-      </form>
-      
       <form method="POST" action="/api/exercise/new-user">
         <title>Create a New User</title>
         <input placeholder="username" type="text" name="username" id="new_user" />
         <button type="submit">Submit</button>
       </form>
+      
+      <form method="POST" action="/api/exercise/add">
+        <title>Add exercises</title>
+        <input placeholder="userId*" type="text" name="userId" id="userId" />
+        <input placeholder="description*" type="text" name="description" id="description" />
+        <input placeholder="duration*" type="text" name="duration" id="duration" />
+        <input placeholder="date (yyyy-mm-dd)" type="date" name="date" id="date" />
+        <button type="submit">Submit</button>
+      </form>
     </main>
 
     <footer>
-      Made with <a href="https://glitch.com">Glitch</a>!
+      Made by <span id="myName">SJ</span> with <a href="https://glitch.com">Glitch</a>!
     </footer>
    
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
