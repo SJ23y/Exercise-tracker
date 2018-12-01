@@ -1,15 +1,10 @@
-/* styles */
-/* called by your view template */
-
-* {
-  box-sizing: border-box;
-}
 
 body {
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: center;
+  align-content: space-around;
+  justify-content: space-around;
   text-align: center;
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 2em;
@@ -24,7 +19,19 @@ h1 {
   font-weight: bold;
 }
 
+form {
+  width: 25vw;
+  padding: 5
+  margin: auto;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
 
-#myname {
+#myName {
   color: orange;
+  font-weight: bold;
 }
