@@ -21,7 +21,9 @@ h1 {
 
 form {
   width: 25vw;
-  padding: 5
+  padding: 1vw;
+  border-radius: 0.5vw;
+  background: rgb(135, 211, 124);
   margin: auto;
   margin-bottom: 5vh;
   display: flex;
