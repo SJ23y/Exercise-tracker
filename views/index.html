@@ -31,28 +31,24 @@
     </header>
 
     <main>
-      <p class="bold">Oh hi,</p>
-      
-      <p>Tell me your hopes and dreams:</p>
-      
-      <form>
-        <input name="dream" type="text" maxlength="100" placeholder="Dreams!" aria-labelledby="submit-dream">
-        <button type="submit" id="submit-dream">Submit Dream</button>
+      <form method="POST" action="/api/exercise/add">
+        <title>Create a New User</title>
+        <input placeholder="username" type="text" name="username" id="new_user" />
+        <button type="submit">Submit</button>
       </form>
       
-      <section class="dreams">
-        <ul id="dreams"></ul>
-      </section>
+      <form method="POST" action="/api/exercise/new-user">
+        <title>Create a New User</title>
+        <input placeholder="username" type="text" name="username" id="new_user" />
+        <button type="submit">Submit</button>
+      </form>
     </main>
 
     <footer>
       Made with <a href="https://glitch.com">Glitch</a>!
     </footer>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
+   
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
-
   </body>
 </html>
