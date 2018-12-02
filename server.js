@@ -14,10 +14,11 @@ mongo.connect(process.env.MONGO_URI, function(err, db) {
     if (err) {console.log('Database error: ' + err);}
     else {
       console.log('Successful database connection');
+      console.log(db);
     }
     
   app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+    response.sendFile(__dirname + '/views/index.html');
 });
   
   app.post('/api/exercise/new-user', function(req, res) {
@@ -27,8 +28,7 @@ mongo.connect(process.env.MONGO_URI, function(err, db) {
           else if (user) {
             res.send('Username already taken');
           }
-          else {
-          
+          else {          
           db.collection('exTracker').insertOne({username: req.body.username, id: uniqid()}, function(err, user) {
             res.send(user);
           }); 
