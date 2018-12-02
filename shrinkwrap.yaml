@@ -2,6 +2,7 @@ dependencies:
   body-parser: 1.18.3
   express: 4.16.4
   mongodb: 3.1.10
+  uniqid: 5.0.3
 packages:
   /accepts/1.3.5:
     dependencies:
@@ -412,6 +413,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-HRkVv/5qY2G6I8iab9cI7v1bOIdhm94dVjQCPFElW9W+3GeDOSHmy2EBYe4VTApuzolPcmgFTN3ftVJRKR2J9Q==
+  /uniqid/5.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-R2qx3X/LYWSdGRaluio4dYrPXAJACTqyUjuyXHoJLBUOIfmMcnYOyY2d6Y4clZcIz5lK6ZaI0Zzmm0cPfsIqzQ==
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -437,3 +442,4 @@ specifiers:
   body-parser: ^1.18.3
   express: ^4.16.4
   mongodb: ^3.1.10
+  uniqid: ^5.0.3

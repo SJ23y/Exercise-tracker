@@ -1,6 +1,7 @@
 const express = require('express');
 const mongo = require('mongodb').MongoClient;
 const bodyParser     = require('body-parser');
+var uniqid = require('uniqid');
 const app = express();
 
 app.use(express.static('public'));
@@ -20,7 +21,21 @@ mongo.connect(process.env.MONGO_URI, function(err,db) {
 });
   
   app.post('/api/exercise/new-user', function(req, res) {
-    res.send('Your username: ' + req.body.username);
+    
+    db.collection('exTracker').findOne({username: req.body.username}, function(err, user) {
+          if (err) {next(err);} 
+          else if (user) {
+            res.send('Username already taken');
+          }
+          else {
+          
+          db.collection('exTracker').insertOne({username: req.body.username, id: uniqid()}, function(err, user) {
+            res.send(user);
+          }); 
+          }       
+          
+      })
+  
 });
     
 });
