@@ -1,5 +1,5 @@
 const express = require('express');
-const mongo = require('mongodb');
+require('mongodb').MongoClient;
 const app = express();
 
 app.use(express.static('public'));
