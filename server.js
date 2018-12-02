@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-mongo.connect(process.env.MONGO_URI, function(err,db) {
+mongo.connect(process.env.MONGO_URI, function(err, db) {
     if (err) {console.log('Database error: ' + err);}
     else {
       console.log('Successful database connection');
