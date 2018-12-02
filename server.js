@@ -10,11 +10,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-mongo.connect(process.env.MONGO_URI, function(err, db) {
+mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db) {
     if (err) {console.log('Database error: ' + err);}
     else {
       console.log('Successful database connection');
-      console.log(db);
+      console.log();
     }
     
   app.get('/', function(request, response) {
@@ -23,13 +23,13 @@ mongo.connect(process.env.MONGO_URI, function(err, db) {
   
   app.post('/api/exercise/new-user', function(req, res) {
     
-    db.collection('exTracker').findOne({username: req.body.username}, function(err, user) {
+    db.db('chopper').collection('exTracker').findOne({username: req.body.username}, function(err, user) {
           if (err) {res.send('error');} 
           else if (user) {
             res.send('Username already taken');
           }
           else {          
-          db.collection('exTracker').insertOne({username: req.body.username, id: uniqid()}, function(err, user) {
+          db.db('chopper').collection('exTracker').insertOne({username: req.body.username, id: uniqid()}, function(err, user) {
             res.send(user);
           }); 
           }
