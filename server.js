@@ -23,7 +23,7 @@ mongo.connect(process.env.MONGO_URI, function(err,db) {
   app.post('/api/exercise/new-user', function(req, res) {
     
     db.collection('exTracker').findOne({username: req.body.username}, function(err, user) {
-          if (err) {next(err);} 
+          if (err) {res.send('error');} 
           else if (user) {
             res.send('Username already taken');
           }
@@ -32,14 +32,12 @@ mongo.connect(process.env.MONGO_URI, function(err,db) {
           db.collection('exTracker').insertOne({username: req.body.username, id: uniqid()}, function(err, user) {
             res.send(user);
           }); 
-          }       
-          
-      })
+          }
   
 });
     
 });
-
+});
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
