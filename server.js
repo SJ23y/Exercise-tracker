@@ -15,8 +15,12 @@ mongo.connect(process.env.MONGO_URI, function(err,db) {
       console.log('Successful database connection');
     }
     
-    app.post('/api/exercise/new-user', function(request, response) {
-    response.send('Your username: ' + req.body.username);
+  app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
+  
+  app.post('/api/exercise/new-user', function(req, res) {
+    res.send('Your username: ' + req.body.username);
 });
     
 });
