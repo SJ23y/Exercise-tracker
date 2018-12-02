@@ -1,7 +1,6 @@
 const express = require('express');
 const mongo = require('mongodb').MongoClient;
 const bodyParser     = require('body-parser');
-var uniqid = require('uniqid');
 const app = express();
 
 app.use(express.static('public'));
@@ -28,8 +27,9 @@ mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db)
           else if (user) {
             res.send('Username already taken');
           }
-          else {          
-          db.db('chopper').collection('exTracker').insertOne({username: req.body.username, id: uniqid()}, function(err, user) {
+          else {
+          let user = {username: req.body.username};
+          db.db('chopper').collection('exTracker').insertOne(user, function(err, doc) {
             res.send(user);
           }); 
           }
