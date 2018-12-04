@@ -29,7 +29,7 @@ mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db)
             res.send('Username already taken');
           }
           else {
-          let newuser = {username: req.body.username, _id:,log: []};
+          let newuser = {username: req.body.username, _id: uniqid(),log: []};
           db.db('chopper').collection('exTracker').insertOne(newuser, function(err, doc) {
             res.send(newuser);
           }); 
