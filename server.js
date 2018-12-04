@@ -28,9 +28,9 @@ mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db)
             res.send('Username already taken');
           }
           else {
-          let user = {username: req.body.username};
-          db.db('chopper').collection('exTracker').insertOne(user, function(err, doc) {
-            res.send(user);
+          let newuser = {username: req.body.username, log: []};
+          db.db('chopper').collection('exTracker').insertOne(newuser, function(err, doc) {
+            res.send(newuser);
           }); 
           }
   
@@ -40,17 +40,21 @@ mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db)
   
   app.post('/api/exercise/add', function(req,res) {
     
-    db.db('chopper').collection('exTracker').findOneAndUpdate({_id: req.body.userId}, {log: }, function(err, user) {
+    db.db('chopper').collection('exTracker').findOne({'_id': req.body.userId}, function(err, user) {
     if (err) {res.send('error');} 
     else if (!user) {
-      res.send('Invalid userId');
+      res.send('Invalid userId ', req.body.userId);
       }
     else {
-      let ex = {
+      user.log.push({
         description: req.body.description,
         duration: req.body.duration,
         date: req.body.date
-      }
+      });
+      
+      user.save(function(err, doc) {
+        res.send(doc);
+      })
        
     }
     })
