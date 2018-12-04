@@ -40,15 +40,16 @@ mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db)
   
   app.post('/api/exercise/add', function(req,res) {
     
-    db.db('chopper').collection('exTracker').findOne({_id: req.body.userId}, function(err, user) {
+    db.db('chopper').collection('exTracker').findOneAndUpdate({_id: req.body.userId}, {log: }, function(err, user) {
     if (err) {res.send('error');} 
     else if (!user) {
       res.send('Invalid userId');
       }
     else {
       let ex = {
-        description: req.body.description
-        duration: req.body.
+        description: req.body.description,
+        duration: req.body.duration,
+        date: req.body.date
       }
        
     }
