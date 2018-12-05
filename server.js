@@ -2,6 +2,7 @@ const express = require('express');
 const uniqid = require('uniqid')
 const mongo = require('mongodb').MongoClient;
 const bodyParser     = require('body-parser');
+const mongoose = require('mongoose');
 const app = express();
 
 app.use(express.static('public'));
@@ -9,8 +10,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
 
-mongo.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db) {
+const Log = new Schema({
+  name: string,
+  _id: ObjectId,
+  log: [{}],
+});
+
+mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db) {
     if (err) {console.log('Database error: ' + err);}
     else {
       console.log('Successful database connection');
