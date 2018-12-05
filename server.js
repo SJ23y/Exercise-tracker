@@ -14,16 +14,17 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const Log = new Schema({
-  name: string,
+  name: String,
   _id: ObjectId,
   log: [{}],
 });
 
+const logs = mongoose.model('logs', Log);
+
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db) {
     if (err) {console.log('Database error: ' + err);}
     else {
-      console.log('Successful database connection');
-      console.log();
+      console.log('Successful database connection');      
     }
     
   app.get('/', function(request, response) {
@@ -32,19 +33,7 @@ mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, 
   
   app.post('/api/exercise/new-user', function(req, res) {
     
-    db.db('chopper').collection('exTracker').findOne({username: req.body.username}, function(err, user) {
-          if (err) {res.send('error');} 
-          else if (user) {
-            res.send('Username already taken');
-          }
-          else {
-          let newuser = {username: req.body.username, _id: uniqid(),log: []};
-          db.db('chopper').collection('exTracker').insertOne(newuser, function(err, doc) {
-            res.send(newuser);
-          }); 
-          }
-  
-    });
+    let newUser = logs
     
   });
   
