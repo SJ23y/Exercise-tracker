@@ -30,13 +30,16 @@ const connection = mongoose.connect(process.env.MONGO_URI);
   app.post('/api/exercise/new-user', function(req, res) {
     
     Log.findOne({name: req.body.username}, function(err, user) {
-      if (err) {res.send('Error when try to find user')}
-    })
-    let newUser = new Log({name: req.body.username, _id: uniqid(),log: []});
-    newUser.save(function(err,user) {
-      if (err) { res.send('Error: ' + err); }
-      else { res.send(user); }
-    })
+        if (err) {res.send('Error when try to find user: ' + err);}
+        else if (user) {res.send('Username: ' + req.body.username + ' already taken')}
+
+        let newUser = new Log({name: req.body.username, _id: uniqid(),log: []});
+      newUser.save(function(err,user) {
+        if (err) { res.send('Error: ' + err); }
+        else { res.send({name: user.name, _id: user['_id']}); }
+        });
+    });
+    
   });
   
   app.post('/api/exercise/add', function(req,res) {
