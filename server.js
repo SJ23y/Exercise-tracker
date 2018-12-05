@@ -15,17 +15,24 @@ const ObjectId = Schema.ObjectId;
 
 const logSchema = new Schema({
   name: String,
-  _id: ObjectId,
+  _id: String,
   log: [{}],
 });
 
 const Log = mongoose.model('Log', logSchema);
 
 const connection = mongoose.connect(process.env.MONGO_URI);
+
+  app.get('/', function(req,res) {
+    res.sendFile(__dirname + '/views/index.html')
+  })
       
   app.post('/api/exercise/new-user', function(req, res) {
     
-    let newUser = new Log({name: req.body.name, log: []});
+    Log.findOne({name: req.body.username}, function(err, user) {
+      if (err) {res.send('Error when try to find user')}
+    })
+    let newUser = new Log({name: req.body.username, _id: uniqid(),log: []});
     newUser.save(function(err,user) {
       if (err) { res.send('Error: ' + err); }
       else { res.send(user); }
