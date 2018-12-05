@@ -21,43 +21,19 @@ const logSchema = new Schema({
 
 const Log = mongoose.model('Log', logSchema);
 
-mongoose.connect(process.env.MONGO_URI)
-    if (err) {console.log('Database error: ' + err);}
-    else {
-      console.log('Successful database connection');      
-    }
-    
-  app.get('/', function(request, response) {
-    response.sendFile(__dirname + '/views/index.html');
-});
-  
+const connection = mongoose.connect(process.env.MONGO_URI);
+      
   app.post('/api/exercise/new-user', function(req, res) {
     
-    let newUser = logs
-    
+    let newUser = new Log({name: req.body.name, log: []});
+    newUser.save(function(err,user) {
+      if (err) { res.send('Error: ' + err); }
+      else { res.send(user); }
+    })
   });
   
   app.post('/api/exercise/add', function(req,res) {
     
-    db.db('chopper').collection('exTracker').findOne({'_id': req.body.userId}, function(err, user) {
-    if (err) {res.send('error');} 
-    else if (!user) {
-      res.send('Invalid userId ' + user);
-      }
-    else {
-      user.log.push({
-        description: req.body.description,
-        duration: req.body.duration,
-        date: req.body.date
-      });
-      
-      user.save(function(err, doc) {
-        res.send(doc);
-      })
-       
-    }
-    })
-  })
   
   
 });
