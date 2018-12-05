@@ -13,15 +13,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const Log = new Schema({
+const logSchema = new Schema({
   name: String,
   _id: ObjectId,
   log: [{}],
 });
 
-const logs = mongoose.model('logs', Log);
+const Log = mongoose.model('Log', logSchema);
 
-mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true }, function(err, db) {
+mongoose.connect(process.env.MONGO_URI)
     if (err) {console.log('Database error: ' + err);}
     else {
       console.log('Successful database connection');      
