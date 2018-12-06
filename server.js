@@ -43,7 +43,21 @@ const connection = mongoose.connect(process.env.MONGO_URI);
   });
   
   app.post('/api/exercise/add', function(req,res) {
-    
+    Log.findOne({_id: req.body.userId}, function(err, user) {
+        if (err) {res.send('Error when try to find user: ' + err);}
+        else if (!user) {res.send('User not found')}
+
+        let logFile = {
+          description: req.body.description,
+          duration: req.body.duration,
+          date: req.body.date
+        }
+        
+      user.save(function(err,user) {
+        if (err) { res.send('Error: ' + err); }
+        else { res.send({name: user.name, _id: user['_id']}); }
+        });
+    });
   
   
 });
