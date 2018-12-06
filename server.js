@@ -57,7 +57,11 @@ const connection = mongoose.connect(process.env.MONGO_URI);
       
       user.save(function(err,user) {
         if (err) { res.send('Error: ' + err); }
-        else { res.send({name: user.name, _id: user['_id']}); }
+        else { res.send({name: user.name,
+                         _id: user['_id'],
+                        description: req.body.description,
+                        duration: req.body.duration,
+                        date: new Date(req.body.date)}); }
         });
     });
   
