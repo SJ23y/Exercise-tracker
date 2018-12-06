@@ -52,7 +52,9 @@ const connection = mongoose.connect(process.env.MONGO_URI);
           duration: req.body.duration,
           date: req.body.date
         }
-        
+      
+      user.log.push(logFile);
+      
       user.save(function(err,user) {
         if (err) { res.send('Error: ' + err); }
         else { res.send({name: user.name, _id: user['_id']}); }
