@@ -68,12 +68,12 @@ const connection = mongoose.connect(process.env.MONGO_URI);
   
 });
 
-  app.post('/api/exercise/log', function(req,res) {
-    Log.findOne({_id: req.body.userId}, function(err, user) {
+  app.get('/api/exercise/log', function(req,res) {
+    Log.findOne({_id: req.params.userId}, function(err, user) {
       if (err) {res.send('Error when try to find user: ' + err);}
       else if (!user) {res.send('User not found')}
       
-      let result = (req.body.from) ? user.log.filter((val) => (val.date>=req.body.date)) : user.log
+      let result = (req.body.from) ? user.log.filter((val) => (Date.parse(val.date)>= Date.parse(req.body.date))) : user.log
       
       res.send(result);
     })
