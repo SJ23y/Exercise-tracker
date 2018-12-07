@@ -69,7 +69,9 @@ const connection = mongoose.connect(process.env.MONGO_URI);
 });
 
   app.post('/api/exercise/log', function(req,res) {
-    Log.findOne('')
+    Log.findOne({_id: req.body.userId}, function(err, user) {
+      
+    })
   })
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
