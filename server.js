@@ -70,6 +70,9 @@ const connection = mongoose.connect(process.env.MONGO_URI);
 
   app.post('/api/exercise/log', function(req,res) {
     Log.findOne({_id: req.body.userId}, function(err, user) {
+      if (err) {res.send('Error when try to find user: ' + err);}
+      else if (!user) {res.send('User not found')}
+      
       
     })
   })
