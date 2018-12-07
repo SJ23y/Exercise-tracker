@@ -67,6 +67,10 @@ const connection = mongoose.connect(process.env.MONGO_URI);
   
   
 });
+
+  app.post('/api/exercise/log', function(req,res) {
+    Log.findOne('')
+  })
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
