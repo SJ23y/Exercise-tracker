@@ -33,9 +33,12 @@ form {
   text-align: center;
 }
 
-form div {
-  display: flex;
-  justify-content: ;
+form div input {
+  width: 10.23vw;  
+}
+
+form div label {
+  color: rgb(148, 69, 176);
 }
 
 #myName {

@@ -61,7 +61,7 @@ const connection = mongoose.connect(process.env.MONGO_URI);
                          _id: user['_id'],
                         description: req.body.description,
                         duration: req.body.duration,
-                        date: new Date(req.body.date)}); }
+                        date: Date.local(req.body.date)}); }
         });
     });
   
