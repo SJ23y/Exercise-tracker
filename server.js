@@ -61,7 +61,7 @@ const connection = mongoose.connect(process.env.MONGO_URI);
                          _id: user['_id'],
                         description: req.body.description,
                         duration: req.body.duration,
-                        date: Date.local(req.body.date)}); }
+                        date: new Date(req.body.date)}); }
         });
     });
   
@@ -75,6 +75,7 @@ const connection = mongoose.connect(process.env.MONGO_URI);
       
       let result = (req.query.from) ? user.log.filter((val) => (Date.parse(val.date)>= Date.parse(req.query.from))) : user.log;
       result = (req.query.to) ? result.filter((val) => (Date.parse(val.date) <= Date.parse(req.query.to))) : result;
+      
       res.send(result);
     })
   })
