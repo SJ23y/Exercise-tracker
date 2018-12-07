@@ -49,8 +49,10 @@
       <form method="GET" action="/api/exercise/log">
         <h2>View history</h2>
         <input placeholder="userId*" type="text" name="userId" id="userId2" />
-        <input placeholder="from date" type="date" name="from" id="from" />
-        <input placeholder="to date" type="date" name="to" id="to" />
+        <div>
+          <label>From: <input placeholder="from date" type="date" name="from" id="from" /></label>
+          <label>To: <input placeholder="to date" type="date" name="to" id="to" /></label>
+        </div>
         <input placeholder="limit" type="number" name="number" id="number" />
         <button type="submit">Submit</button>
       </form>

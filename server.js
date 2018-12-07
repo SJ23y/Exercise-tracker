@@ -73,8 +73,8 @@ const connection = mongoose.connect(process.env.MONGO_URI);
       if (err) {res.send('Error when try to find user: ' + err);}
       else if (!user) {res.send('User not found')}
       
-      let result = (req.query.from) ? user.log.filter((val) => (Date.parse(val.date)>= Date.parse(req.query.from))) : user.log
-      
+      let result = (req.query.from) ? user.log.filter((val) => (Date.parse(val.date)>= Date.parse(req.query.from))) : user.log;
+      result = (req.query.to) ? result.filter((val) => (Date.parse(val.date) <= Date.parse(req.query.to))) : result;
       res.send(result);
     })
   })

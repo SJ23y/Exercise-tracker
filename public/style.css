@@ -33,6 +33,11 @@ form {
   text-align: center;
 }
 
+form div {
+  display: flex;
+  justify-content: ;
+}
+
 #myName {
   color: orange;
   font-weight: bold;
