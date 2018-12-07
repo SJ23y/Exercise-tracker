@@ -73,7 +73,7 @@ const connection = mongoose.connect(process.env.MONGO_URI);
       if (err) {res.send('Error when try to find user: ' + err);}
       else if (!user) {res.send('User not found')}
       
-      
+      let from = (req.body.from) ? req.body.from : 0
     })
   })
 // listen for requests :)
