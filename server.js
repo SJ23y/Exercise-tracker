@@ -81,7 +81,12 @@ const connection = mongoose.connect(process.env.MONGO_URI);
         else {return 0;}
       })
       result = (req.query.limit) ? result.slice(0,parseInt(req.query.limit)) : result;
-      res.send(result);
+      res.send({
+        _id: user['_id'],
+        username: user.name,
+        count:result.length,
+        log: result
+      });
     })
   })
 // listen for requests :)
