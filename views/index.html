@@ -33,27 +33,27 @@
     <main>
       <form method="POST" action="/api/exercise/new-user">
         <h2>Create a New User</h2>
-        <input placeholder="username" type="text" name="username" id="new_user" />
+        <input placeholder="username" type="text" name="username" id="new_user" required/>
         <button type="submit">Submit</button>
       </form>
       
       <form method="POST" action="/api/exercise/add">
         <h2>Add exercises</h2>
-        <input placeholder="userId*" type="text" name="userId" id="userId" />
-        <input placeholder="description*" type="text" name="description" id="description" />
-        <input placeholder="duration*" type="text" name="duration" id="duration" />
-        <input placeholder="date (yyyy-mm-dd)" type="date" name="date" id="date" />
+        <input placeholder="userId*" type="text" name="userId" id="userId" required/>
+        <input placeholder="description*" type="text" name="description" id="description" required/>
+        <input placeholder="duration*" type="text" name="duration" id="duration" required/>
+        <input placeholder="date (yyyy-mm-dd)" type="date" name="date" id="date" required/>
         <button type="submit">Submit</button>
       </form>
       
       <form method="GET" action="/api/exercise/log">
         <h2>View history</h2>
-        <input placeholder="userId*" type="text" name="userId" id="userId2" />
+        <input placeholder="userId*" type="text" name="userId" id="userId2" required/>
         <div>
           <label>From: <input placeholder="from date" type="date" name="from" id="from" /></label>
           <label>To: <input placeholder="to date" type="date" name="to" id="to" /></label>
         </div>
-        <input placeholder="limit" type="number" name="number" id="number" />
+        <input placeholder="limit" type="number" name="limit" id="limit" />
         <button type="submit">Submit</button>
       </form>
     </main>

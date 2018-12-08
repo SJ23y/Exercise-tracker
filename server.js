@@ -76,8 +76,11 @@ const connection = mongoose.connect(process.env.MONGO_URI);
       let result = (req.query.from) ? user.log.filter((val) => (Date.parse(val.date)>= Date.parse(req.query.from))) : user.log;
       result = (req.query.to) ? result.filter((val) => (Date.parse(val.date) <= Date.parse(req.query.to))) : result;
       result.sort(function(a,b) {
-        if (Date.parse(a.date)>Date.parse(a.date))
+        if (Date.parse(a.date)>Date.parse(b.date)) {return 1;}
+        else if (Date.parse(a.date)<Date.parse(b.date)) {return -1;}
+        else {return 0;}
       })
+      result = (req.query.limit) ? result.slice(0,parseInt(req.query.limit)) : result;
       res.send(result);
     })
   })
